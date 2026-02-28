@@ -47,16 +47,18 @@ html, body, [class*="css"] {
 .block-container {
   max-width: 780px !important;
   padding: 0 24px 80px !important;
+  margin-top: 0 !important;
 }
 
-/* ── Top bar ── */
+/* ── Top bar — fixed positioned, no whitespace ── */
 .top-bar {
   background: var(--navy);
-  margin: -1rem -24px 0;
-  padding: 16px 40px;
+  padding: 14px 32px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: 0;
 }
 .top-logo {
   font-family: 'Syne', sans-serif;
@@ -73,6 +75,11 @@ html, body, [class*="css"] {
   letter-spacing: 1.5px;
   text-transform: uppercase;
 }
+
+/* Kill ALL Streamlit padding above first element */
+.block-container > div:first-child { margin-top: 0 !important; padding-top: 0 !important; }
+[data-testid="stVerticalBlock"] > div:first-child { padding-top: 0 !important; }
+section.main > div { padding-top: 0 !important; }
 
 /* ── Hero ── */
 .hero {
@@ -356,24 +363,19 @@ html, body, [class*="css"] {
 """, unsafe_allow_html=True)
 
 
-# ── Top bar ────────────────────────────────────────────────────────────────────
+# ── Top bar + Hero (single block — no gap) ───────────────────────────────────
 st.markdown("""
 <div class='top-bar'>
   <div class='top-logo'>Cadence<span>Works</span></div>
   <div class='top-tag'>Practice Intelligence Calculator</div>
 </div>
-""", unsafe_allow_html=True)
-
-
-# ── Hero ───────────────────────────────────────────────────────────────────────
-st.markdown("""
 <div class='hero'>
   <div class='hero-eyebrow'>
     <span style='width:6px;height:6px;background:var(--teal);border-radius:50%;display:inline-block'></span>
     Free Practice Analysis
   </div>
   <h1>See exactly how much<br>revenue your practice<br>is <em>losing to no-shows</em></h1>
-  <p>Answer 5 quick questions. Get an instant report showing your revenue at risk, 
+  <p>Answer 5 quick questions. Get an instant report showing your revenue at risk,
   what's driving it, and what to do about it.</p>
 </div>
 """, unsafe_allow_html=True)
